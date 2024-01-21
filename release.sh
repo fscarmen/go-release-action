@@ -15,8 +15,8 @@ fi
 RELEASE_NAME=${INPUT_RELEASE_NAME}
 
 # Create tags and release if they does not existe.
+git config --global --add safe.directory /github/workspace
 if ! git tag --list | grep -q ${RELEASE_NAME}; then
-    git config --global --add safe.directory /github/workspace
     git tag ${RELEASE_NAME}
     git push origin ${RELEASE_NAME}
 fi
