@@ -16,8 +16,9 @@ RELEASE_NAME=${INPUT_RELEASE_NAME}
 
 # Create tags and release if they does not existe.
 if ! git tag --list | grep -q ${RELEASE_NAME}; then
-     git tag ${RELEASE_NAME}
-     git push origin ${RELEASE_NAME}
+    git config --global --add safe.directory /github/workspace
+    git tag ${RELEASE_NAME}
+    git push origin ${RELEASE_NAME}
 fi
 
 RELEASE_ASSET_NAME=${BINARY_NAME}-${RELEASE_TAG}-${INPUT_GOOS}-${INPUT_GOARCH}
